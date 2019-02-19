@@ -16,21 +16,9 @@ Gestion des stocks (Stock management)
 
 <code>
   cd D:\work\cs\c++\vs2015\cordova\stockmanage
-</code>
-
-<code>
   cordova create StockApp
-</code>
-
-<code>
   cd StockApp
-</code>
-
-<code>
   cordova platform add android
-</code>
-
-<code>
   cordova build
 </code>
 
