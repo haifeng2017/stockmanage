@@ -2,25 +2,26 @@
 Gestion des stocks
 
 
-## Ê¹ÓÃ Cordova ±àÒë stock
+## ä½¿ç”¨ Cordova ç¼–è¯‘ stock
 
-### ×¼±¸¹¤×÷
-1. °²×° Android SDK
+### å‡†å¤‡å·¥ä½œ
+1. å®‰è£… Android SDK
 2. JDK
 3. Node.js
 4. Cordova
 
-### ´´½¨Ó¦ÓÃ StockApp ²¢±àÒë
+### åˆ›å»ºåº”ç”¨ StockApp å¹¶ç¼–è¯‘
 
-cd D:\work\cs\c++\vs2015\cordova\hello
-cordova create StockApp
-cd StockApp
-cordova platform add android
-cordova build
+<code>
+  cd D:\work\cs\c++\vs2015\cordova\stockmanage
+  cordova create StockApp
+  cd StockApp
+  cordova platform add android
+  cordova build
+</code>
 
-
-±àÒë³É¹¦ºóµÃµ½µÄ app-debug.apk ÎÄ¼şÎ»ÓÚ
-D:\work\cs\c++\vs2015\cordova\StockApp\platforms\android\app\build\outputs\apk\debug
+ç¼–è¯‘æˆåŠŸåå¾—åˆ°çš„ app-debug.apk æ–‡ä»¶ä½äº
+D:\work\cs\c++\vs2015\cordova\stockmanage\platforms\android\app\build\outputs\apk\debug
 
 
 
