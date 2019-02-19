@@ -1,4 +1,4 @@
-# stockmanage
+﻿# stockmanage
 Gestion des stocks (Stock management)
 
 
@@ -14,6 +14,7 @@ Gestion des stocks (Stock management)
 
 ### 创建应用 StockApp 并编译
 
+<<<<<<< Updated upstream
 cd D:\work\cs\c++\vs2015\cordova\stockmanage<br/>
 
 cordova create StockApp  <br/>
@@ -24,8 +25,26 @@ cordova platform add android  <br/>
   
 cordova build  <br/>
 
+=======
+<code>
+  cd D:\work\cs\c++\vs2015\cordova\stockmanage
+</code>  
+<code>
+  cordova create StockApp
+</code>  
+<code>
+  cd StockApp
+</code>  
+<code>
+  cordova platform add android
+</code>  
+<code>
+  cordova build
+</code>  
+>>>>>>> Stashed changes
 
 编译成功后得到的 app-debug.apk 文件位于
+  
 D:\work\cs\c++\vs2015\cordova\stockmanage\platforms\android\app\build\outputs\apk\debug
 
 
