@@ -1,0 +1,105 @@
+.copyright {
+    font-size: 12px;
+    text-align: center;
+}
+
+.ui-content {
+    text-align: center;
+}
+
+.pt-menu .ui-btn {
+    cursor: pointer;
+    display: inline-block;
+    height: 100px;
+    margin: 5px !important;
+    padding: 10px;
+    text-align: center;
+    width: 110px;
+    /*border-radius: 200px;*/
+}
+
+.pt-menu .ui-btn-inner {
+    border: 0;
+}
+
+.pt-menu .ui-btn img {
+    /*height: 50px;*/
+}
+
+
+/* contact page */
+#contact .ui-br {
+    border: 0;
+}
+
+/* form underline bug fix */
+.ui-br {
+    border-bottom: none !important;
+}
+
+/* form errors */
+label.error {
+    color: red;
+    padding-top: .5em;
+    vertical-align: top;
+    font-weight:bold;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 22%;
+}
+
+
+/* table styles */
+.tablerow {
+    display: inline-block;
+    width: 100%;
+}
+.left-table {
+    text-align: right;
+    width: 25%; float: left;
+    padding-right: 2%;
+    font-weight: bold;
+}
+.right-table {
+    text-align: left;
+    width: 73%; float: left;
+}
+
+/* bottom back and next buttons */
+.previous-btn {
+    float: left;
+}
+.next-btn {
+    float: right;
+}
+
+/* toggle buttons styles */
+.ui-collapsible-heading-toggle {
+    border: none;
+}
+
+/* ui component tweaks */
+.ui-textalign-left {
+    text-align: left;
+}
+
+/* portfolio item right button stlye fix */
+.portfolio-item .ui-btn-icon-notext {
+    padding: 0 !important;
+}
+
+/* add by haifeng, used in stock-info analysis */
+.ui-li-link-alt-half { position: absolute; width: 50%; height: 100%; border-width: 0; border-left-width: 1px; top: 0; right: 0; margin: 0; padding: 0; z-index: 2; }
+
+.ui-li-link-alt-half .ui-btn { overflow: hidden; position: absolute; right: 8px; top: 50%; margin: -13px 0 0 0; border-bottom-width: 1px; z-index: -1;}
+
+.ui-li-link-alt-half .ui-btn-inner { padding: 0; height: 100%; position: absolute; width: 100%; top: 0; left: 0;}
+.ui-li-link-alt-half .ui-btn .ui-icon { right: 50%; margin-right: -9px; }
+.ui-li-link-alt-half .ui-btn-icon-notext .ui-btn-inner .ui-icon { position: absolute; top: 50%; margin-top: -9px; }
+
+
+/* input indicator */
+#stockid::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}

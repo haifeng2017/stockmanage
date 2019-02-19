@@ -1,0 +1,569 @@
+<!--
+ template from Sam Deering
+    jQuery Mobile Portfolio
+    Author: Sam Deering (samdeering.com)
+    Article: jquery4u.com/mobile/jquery-mobile-portfolio/
+    Demo: jquery4u.com/demos/mobileportfoliosite/
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>NoooIn</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+		-->
+	<meta name="keywords" content="mobile portfolio, mobile portfolio site">
+	<meta name="author" content="sam deering">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/jquery.mobile-1.2.0.min.js"></script>
+	<link href="css/jquery.mobile.structure-1.2.0.min.css" rel="stylesheet">
+	<link href="css/jquery.mobile.theme-1.2.0.min.css" rel="stylesheet">
+	<link href="css/jquery.mobile-1.2.0.min.css" rel="stylesheet">
+	<link href="css/photoswipe.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/script.js"></script>
+	<script src="js/settings.js"></script>
+	<script src="js/klass.min.js"></script>
+	<script src="js/code.photoswipe.jquery-3.0.5.min.js"></script>
+	<script src="js/db.js"></script>
+	<!--
+	<script src="js/jquery_loadscript.js"></script>
+	-->
+	
+</head>
+
+<body>
+
+
+	<!-- homepage -->
+	<div data-role="page" id="home">
+		<div data-role="header">
+			<h1>诺应</h1>
+		</div>
+		<div data-role="content">
+
+		<div class="pt-menu">
+			<a data-theme="d" data-corners="false" data-role="button" href="#page_cash" onclick="displaymycash();return true;">
+			<img src="images/icons/round/64x64/profile.png" alt="rss" style="display: block; margin: 0 auto">
+				我的现金
+			</a>
+
+			<a data-theme="d" data-corners="false" data-role="button" href="#page_selfchoice">
+			<img src="images/icons/round/64x64/portfolio.png" alt="rss" style="display: block; margin: 0 auto">
+				自选股
+			</a>
+
+			<a data-theme="d" data-corners="false" data-role="button" href="#strategy">
+			<img src="images/icons/round/64x64/linkedin.png" alt="mail" style="display: block; margin: 0 auto">
+				策略
+			</a>
+
+			<a data-theme="d" data-corners="false" data-role="button" href="#mysetting" onclick="displaymysetting();return true;">
+			<img src="images/icons/round/64x64/digg.png" alt="mail" style="display: block; margin: 0 auto">
+				设置
+			</a>
+			
+			<a data-theme="d" data-corners="false" data-role="button" href="#about" >
+			<img src="images/icons/round/64x64/mail.png" alt="mail" style="display: block; margin: 0 auto">
+				关于
+			</a>
+		</div>
+
+		</div>
+		<div data-role="footer">
+			<h2>Gestion des stocks</h2>
+			<p class="copyright">&copy; Copyright 2016</p>
+			<button name="buttonExit" onclick="exitFromApp()">退出</button>
+		</div>
+	</div>
+
+	<!-- personal profile page -->
+	<div data-role="page" id="page_cash" data-title="profile">
+		<div data-role="header">
+			<h1>我的现金</h1>
+			<a data-role="button" href="#home" data-icon="home" data-corners="false">Home</a>
+		</div>
+		<div data-role="content">
+			<!-- profile image -->
+			<h2>初始资金：<span id="initcash_on_page_cash"></span> 元</h2>
+			<h2>剩余现金：<span id="currentcash_on_page_cash"></span> 元</h2>
+			<h2>股票总市值：<span id="stockvalue_on_page_cash"></span> 元</h2>
+			<h2>盈利：<span id="profit_on_page_cash"></span> 元</h2>
+			<h2>盈利占比：<span id="percentage_on_page_cash"></span></h2>
+			<h2>股票总的数量：<span id="totalshares_on_page_cash"></span> 股</h2>
+			
+			
+			
+                <div class="ui-body">
+                    <!-- previous page link -->
+<!--                     <a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#home">
+                        <img src="images/icons/round/64x64/home.png" alt="rss" style="display: block; margin: 0 auto">
+                        Home
+                    </a> -->
+
+                    <!-- next page link -->
+                    <a class="next-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-r" data-iconpos="right" href="#page_selfchoice">
+                        <img src="images/icons/round/64x64/portfolio.png" alt="rss" style="display: block; margin: 0 auto">
+                        自选股
+                    </a>
+                </div>
+
+            </div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+        <!-- portfolio page -->
+        <div data-role="page" id="page_selfchoice" data-title="portfolio">
+            <div data-role="header">
+                <h1>自选股</h1>
+				<a data-role="button" href="#home" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+            </div>
+            <div data-role="content">
+
+                <ul data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-corner-none">
+
+                    <div id="portfolio-items-list"></div>
+                    
+
+                    <!-- portfolio item adding button -->
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="portfolio-item ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c ui-corner-none"><div class="ui-btn-inner ui-li ui-li-has-alt"><div class="ui-btn-text"><a href="#addstock" class="ui-link-inherit">				
+					<img src="images/icons/other/plus_orange.png" class="ui-li-thumb ui-corner-none">
+                    <h3 class="ui-li-heading">添加</h3>
+                    <p class="ui-li-desc">Add a new stock.</p></a>
+
+                    </div></div><a href="#addstock" title="Purchase album" class="ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-d" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="arrow-r" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></span></span></a></li>
+
+                </ul>
+
+                <div>
+                    <!-- previous page link -->
+                    <a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#page_cash" onclick="displaymycash();return true;">
+                        <img src="images/icons/round/64x64/profile.png" alt="rss" style="display: block; margin: 0 auto">
+                        我的现金
+                    </a>
+
+                    <!-- next page link -->
+                    <a class="next-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-r" data-iconpos="right" href="#strategy">
+                        <img src="images/icons/round/64x64/linkedin.png" alt="rss" style="display: block; margin: 0 auto">
+                        策略
+                    </a>
+                </div>
+
+            </div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+        <!-- portfolio-info page -->
+		<div data-role="page" id="portfolio-info" data-title="portfolio-info">
+            <div data-role="header">
+                <h1 id="stockName"></h1>
+				<p id="stockInfo"></p>
+				<p id="stockCurrentPrice"></p>
+				<p id="stockProfit"></p>
+				
+				<a data-role="button" href="#page_selfchoice" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+            </div>
+            <div data-role="content">
+
+            <ul data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-corner-none">
+				
+        
+		
+			<div id="stock-info"></div>			
+			
+			<!-- portfolio item adding button -->
+                    <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="false" data-iconpos="right" data-theme="c" class="portfolio-item ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c ui-corner-none"><div class="ui-btn-inner ui-li ui-li-has-alt"><div class="ui-btn-text"><a href="#addrecord" class="ui-link-inherit" onclick="addnewrecord();return true;">				
+					<img src="images/icons/other/plus_orange.png" class="ui-li-thumb ui-corner-none">
+                    <h3 class="ui-li-heading">添加</h3>
+                    <p class="ui-li-desc">Add a new record.</p></a>
+
+                    </div></div><a href="#addrecord" title="Purchase album" class="ui-li-link-alt ui-btn ui-btn-icon-notext ui-btn-up-d" data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="notext" data-theme="c"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-icon="arrow-r" data-iconpos="notext" data-theme="d" title="" class="ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext"><span class="ui-btn-inner"><span class="ui-btn-text"></span><span class="ui-icon ui-icon-plus ui-icon-shadow">&nbsp;</span></span></span></span></a></li>
+			</ul>
+			
+			<div>
+				<div id="buttonStrategy"></div>
+			</div>
+			
+			</div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+
+
+        <!-- social page -->
+        <div data-role="page" id="strategy" data-title="Social">
+            <div data-role="header">
+				<h1 id="stockNameInAnalysis"></h1>
+                <a data-role="button" href="#portfolio-info" data-transition="flip"
+                data-icon="arrow-l" data-corners="false">Back</a>
+            </div>
+            <div data-role="content">
+			
+			<ul data-inset="true" data-role="listview" class="ui-listview ui-listview-inset ui-corner-all ui-shadow ui-corner-none">
+			
+				<div id="strategy-info"></div>
+				
+			</ul>
+
+                <div>
+                    <!-- previous page link -->
+                    <a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#page_selfchoice">
+                        <img src="images/icons/round/64x64/portfolio.png" alt="rss" style="display: block; margin: 0 auto">
+                        自选股
+                    </a>
+
+                    <!-- next page link -->
+                    <a class="next-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-r" data-iconpos="right" href="#mysetting" onclick="displaymysetting();return true;">
+                        <img src="images/icons/round/64x64/digg.png" alt="rss" style="display: block; margin: 0 auto">
+                        设置
+                    </a>
+                </div>
+
+            </div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+	<!-- Add Stock page -->
+	<div data-role="page" id="addstock" data-title="NewStoct">
+		<div data-role="header">
+			<h1>添加股票</h1>
+			<a data-role="button" href="#page_selfchoice" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+		</div>
+		<div data-role="content">
+		<form id="mystocks" novalidate="novalidate" >
+			<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+				<label for="stockid" class="ui-input-text">代码</label>
+				<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" 
+                value="" name="stockid" id="stockid"  list="stock_code" data-corners="false" >
+					<datalist id="stock_code">
+					  <option value="600118">
+					  <option value="300170">
+					  <option value="601021">
+					  <option value="600000">
+					  <option value="000002">
+					</datalist>
+				<input type="hidden" id="id"/>
+			</div>
+			<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+				<label for="name" class="ui-input-text">名称</label>
+				<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" 
+                value="" name="name" id="name" list="stock_name" data-corners="false" >
+
+					<datalist id="stock_name">
+					  <option value="中国卫星">
+					  <option value="春秋航空">
+					  <option value="汉得信息">
+					  <option value="浦发银行">
+					  <option value="万科 A">
+					</datalist>
+
+			</div>
+			<div style="display:inline-block">
+				<input type="button" name="btnSReset" id="btnSReset" class="ui-btn-hidden" aria-disabled="false" data-corners="false" value="重置" onClick="this.form.reset()" />
+			</div>
+			<div style="display:inline-block">
+				<button type="submit" data-theme="d" name="submitSButton" id="submitSButton" value="submit" class="ui-btn-hidden" aria-disabled="false" data-corners="false">添加</button>
+			</div>
+			<!--
+				<button id="btnSDrop" type="submit">DROP</button>
+			-->
+		</form>
+
+		<div>
+		<!-- previous page link -->
+			<a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#strategy">
+			<img src="images/icons/round/64x64/linkedin.png" alt="rss" style="display: block; margin: 0 auto">
+				策略
+			</a>
+		</div>
+		</div>
+		<div data-role="footer">
+			<h2>Gestion des stocks</h2>
+			<p class="copyright">&copy; Copyright 2016</p>
+			<button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+			<a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+		</div>
+	</div>
+		
+
+		<!-- Add Record page -->
+        <div data-role="page" id="addrecord" data-title="NewRecord">
+            <div data-role="header">
+                <h1>添加交易记录</h1>
+                <a data-role="button" href="#portfolio-info" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+            </div>
+            <div data-role="content">
+			
+
+				
+	<form id="myrecords" novalidate="novalidate" >
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<label for="stockTid" class="ui-input-text">代码</label>
+			<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" value="" name="stockTid" id="stockTid" data-corners="false" />
+			<input type="hidden" id="id"/>
+		</div>
+        <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<label for="buyorsell" class="ui-input-text"><span id="totalshares"></span></label>
+			<select id="buyorsell" name="buyorsell" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" data-corners="false">
+				<option value="-1">买</option>
+				<option value="1">卖</option>
+			</select>
+		</div>
+		<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<label for="price" class="ui-input-text">价格</label>
+			<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" value="" name="price" id="price" data-corners="false" >
+			<input type="hidden" id="id"/>
+		</div>
+        <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+			<label for="shares" class="ui-input-text">数量</label>
+			<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" 
+                value="" name="shares" id="shares" data-corners="false" >
+		</div>
+		<div style="display:inline-block">
+		<input type="button" name="btnTReset" id="btnTReset" class="ui-btn-hidden" aria-disabled="false" data-corners="false" value="重置" onClick="this.form.reset()" />
+		</div>
+		<div style="display:inline-block">
+		<button type="submit" data-theme="d" name="submitTButton" id="submitTButton" value="submit" class="ui-btn-hidden" aria-disabled="false" data-corners="false">添加</button>
+		</div>
+	</form>
+
+
+
+                <div>
+                    <!-- previous page link -->
+                    <a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#strategy">
+                        <img src="images/icons/round/64x64/linkedin.png" alt="rss" style="display: block; margin: 0 auto">
+                        策略
+                    </a>
+                </div>
+            </div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+	
+
+
+
+	<!-- Setting page -->
+	<div data-role="page" id="mysetting" data-title="MySetting">
+		<div data-role="header">
+			<h1>设置</h1>
+			<a data-role="button" href="#strategy" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+		</div>
+		<div data-role="content">
+		
+		<div id="myrate"></div>
+		
+		<form id="mysetting" novalidate="novalidate" >
+			<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+				<label for="initcash" class="ui-input-text">初始资金</label>
+				<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" 
+                value="" name="initcash" id="initcash" data-corners="false" >
+				<input type="hidden" id="id"/>
+			</div>
+			<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+				<label for="traderate" class="ui-input-text">佣金费率</label>
+				<input type="text" class="required ui-input-text ui-body-d ui-corner-none ui-shadow-inset" 
+                value="" name="traderate" id="traderate" data-corners="false" >
+			</div>
+			<div style="display:inline-block">
+				<input type="button" name="btnSettingReset" id="btnSettingReset" class="ui-btn-hidden" aria-disabled="false" data-corners="false" value="重置" onClick="this.form.reset()" />
+			</div>
+			<div style="display:inline-block">
+				<button type="submit" data-theme="d" name="submitSettingButton" id="submitSettingButton" value="submit" class="ui-btn-hidden" aria-disabled="false" data-corners="false">更改</button>
+			</div>
+		</form>
+		
+		<input type="button" name="resetAllValueToZero" id="resetAllValueToZero" onclick="javascript:if(confirm('数据清空后无法恢复，确定清空吗？'))setalltodefaultvalue();" value="清空所有数据，恢复到初始状态!" />
+
+		<div>
+		<!-- previous page link -->
+			<a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#strategy">
+			<img src="images/icons/round/64x64/linkedin.png" alt="rss" style="display: block; margin: 0 auto">
+				策略
+			</a>
+			
+		<!-- next page link -->
+            <a class="next-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-r" data-iconpos="right" href="#about">
+            <img src="images/icons/round/64x64/mail.png" alt="rss" style="display: block; margin: 0 auto">
+                关于
+            </a>
+		</div>
+		</div>
+		<div data-role="footer">
+			<h2>Gestion des stocks</h2>
+			<p class="copyright">&copy; Copyright 2016</p>
+			<button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+			<a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+		</div>
+	</div>
+		
+	<!-- About page -->
+        <div data-role="page" id="about" data-title="About">
+            <div data-role="header">
+                <h1>关于</h1>
+				<a data-role="button" href="#mysetting" data-transition="flip" data-icon="arrow-l" data-corners="false">Back</a>
+            </div>
+            <div data-role="content">
+			<p>Gestion des stocks</p>
+            <p>Version: 1.0</p>
+			<p>Build Date: 2016/11/17</p>
+			<p>Author: Haifeng XU</p>
+            <p>Email: haifengxu.xhf@foxmail.com</p>
+			
+            <br/>
+            <hr/>
+			<p>Remark: This APP is based on the template created by Samuel Lee Deering.</p>
+			
+			
+                <div>
+                    <!-- previous page link -->
+                    <a class="previous-btn" data-theme="c" data-corners="false" data-role="button" data-inline="true" data-icon="arrow-l" href="#mysetting">
+                        <img src="images/icons/round/64x64/digg.png" alt="rss" style="display: block; margin: 0 auto">
+                        设置
+                    </a>
+                </div>
+            </div>
+            <div data-role="footer">
+                <h2>Gestion des stocks</h2>
+                <p class="copyright">&copy; Copyright 2016</p>
+                <button name="buttonExit" class="ui-btn-left" onclick="exitFromApp()">退出</button>
+                <a data-role="button" href="#home" data-transition="flip" data-icon="home" data-corners="false" class="ui-btn-right">Home</a>
+            </div>
+        </div>
+
+
+
+	
+    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+    <!-- See <head> section above for additional JS libraries loaded as part of this application. -->
+
+        
+    <!-- <script src="cordova.js"></script>   -->
+        <!-- "Phantom" cordova.js required for projects that use plugins -->
+    <script src="cordova.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8">
+    // Wait for device API libraries to load
+    //
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+        alert("back button pressed!");
+    }
+    function exitFromApp() {
+        navigator.app.exitApp();
+    }
+    </script>
+
+    <script src="js/app.js"></script>           <!-- for your event code, see README and file comments for details -->
+    <script src="js/init-app.js"></script>      <!-- for your init code, see README and file comments for details -->
+    <script src="xdk/init-dev.js"></script>     <!-- normalizes device and document ready events, see file for details -->
+
+    <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+    <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+    <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+</body>
+
+<!--
+    Recommended JavaScript library load order for hybrid Cordova apps:
+
+    * "Device-Independent" JavaScript libraries.
+    * optional: weinre debug script tag for remote console debug (see notes).
+    * Intel XDK device JavaScript library.
+    * Cordova/PhoneGap device JavaScript library.
+    * "Device-Dependent" JavaScript libraries.
+    * Application JavaScript <script> tags and libraries.
+    * optional: weinre debug script tag for remote console debug (see notes).
+
+    In complex projects, the JavaScript load order is important. You must insure that the underlying
+    device API native code finishes its init, which usually takes longer than the webview init...
+
+    VERY IMPORTANT: notice that all of the libraries used in this project are located within the app's
+    local directories, which means they will get bundled with the app. They are NOT being pulled in
+    over the net. In most cases, this is what you should be doing when you build a hybrid mobile app.
+    This insures that you always use the JS code that you debugged against AND that you are not requiring
+    a data connection (network connection) to get the app started. If your app startup required a data
+    connection to initialize and start interaction with the user, lack of a reliable network connection
+    could be disasterous. Not to mention it generally results in a slower load time. Loading locally is
+    is much friendlier to your end user's data plan and battery.  :-)
+
+    NOTE: do not use a directory prefix with the cordova.js file - it is inserted automatically
+    by the build system, emulator and other tools and is assumed to be in the index.html source directory.
+    You will not find this JS file anywhere in your project, it is a "phantom" library. If you do see
+    copies of this file as part of your project it should be removed to avoid confusing the Intel XDK.
+
+    LIBRARY NOTE: If you are using a large number of JavaScript libraries, especially third-party libraries
+    (like jQuery, {{ mustache }}, Underscore, etc.) that are "independent" of the device APIs provided
+    by the Cordova library and plugins - and they are independent of your application - your
+    app initialization will be most successful if you load these libraries BEFORE the Cordova JS file,
+    in the <head> section of your index.html file. Obviously, any code that depends on Cordova APIs
+    must be loaded AFTER the cordova.js library.
+
+    Libraries that are "independent" of the device APIs are libraries that you could use in a desktop
+    browser in a normal web page or web app. "Dependent" libraries are, most likely, your own code
+    that you've written specifically to work with the Cordova device APIs. In some cases,
+    if your device-dependent code requires access to device-independent code to get started, you may
+    have to use something like CommonJS to force the device-dependent code to wait for the device-
+    independent code to initialize, otherwise you may have trouble getting your app started.
+
+    Because of this added dependency on the underlying native code (device) initialization, you should
+    not use the "document ready" event to start your application. You should wait for the "device ready"
+    event before you begin your application (if it uses any device APIs); in practice, it is best to wait
+    for both. (See the init-dev.js file in this template for an example of how to do this, it generates
+    a custom "app.Ready" event that you can trigger off of and just forget about the other events.)
+
+    NOTE: *any* library that redefines addEventListener() or fiddles with outstanding events may
+    interfere with capturing the "device ready" event and should, therefore, be placed *BEFORE*
+    the Cordova JS library in the load order.
+
+    ALSO: if you use weinre for debugging (ala the Test tab or your own), you may have to experiment with
+    the placement of the weinre script. Some recommended locations are shown within. If these locations
+    do not work, you may have to experiment. The optimum placement can be app-specific, primarily as a
+    function of the included JavaScript libraries and your initialization.
+-->
+
+
+
+
+</html>
