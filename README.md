@@ -1,29 +1,35 @@
 # stockmanage
-Gestion des stocks
+Gestion des stocks (Stock management)
 
 
-## 使用 Cordova 编译 stock
+## 使用 Cordova 编译 stockmanage
 
-### 准备工作
-1. 安装 Android SDK
+### 准备编译所需的工具
+1. Android SDK
 2. JDK
 3. Node.js
 4. Cordova
+
+具体参见 References.
 
 ### 创建应用 StockApp 并编译
 
 <code>
   cd D:\work\cs\c++\vs2015\cordova\stockmanage
 </code>
+
 <code>
   cordova create StockApp
 </code>
+
 <code>
   cd StockApp
 </code>
+
 <code>
   cordova platform add android
 </code>
+
 <code>
   cordova build
 </code>
